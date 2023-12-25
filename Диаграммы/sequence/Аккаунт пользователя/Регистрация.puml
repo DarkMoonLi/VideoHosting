@@ -1,0 +1,18 @@
+@startuml Авторизация
+    autonumber
+
+    actor Client
+    
+    participant UI
+    participant Server
+    participant Db
+
+    Client -> UI: Ввод логина и пароля
+    UI -> Server: Запрос о создании аккаунта
+    Server -> Db: Запрос о получении данных
+    Db -> Db: подготовка ответа
+    Server <-- Db: Отправка данных
+    UI <-- Server: Возврат сообщения об регистрации
+    Client <-- UI: Ответ от UI
+
+@enduml

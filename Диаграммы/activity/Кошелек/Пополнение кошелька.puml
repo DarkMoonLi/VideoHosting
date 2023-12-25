@@ -1,0 +1,17 @@
+@startuml
+start
+switch(:Выбор способа пополнения)
+case (Visa)
+    :пополнение через Visa;
+case (MasterCard)
+    :пополнение через MasterCard;
+case (Qiwi)
+    :пополнение через Qiwi;
+case (WebMoney)
+    :пополнение через WebMoney;
+case (Yandex.Cash)
+    :пополнение через Yandex.Cash;
+endswitch
+:Кошелек пополнен;
+stop
+@enduml

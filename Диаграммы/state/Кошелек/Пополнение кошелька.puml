@@ -1,0 +1,28 @@
+@startuml
+@startuml
+
+state fork_state <<fork>>
+[*] --> Непоплненный_Кошелек
+Непополненный_Кошелек --> fork_state 
+state "Пополнение через Visa" as Visa
+state "Пополнение через MasterCard" as MasterCard
+state "Пополнение через Qiwi" as Qiwi
+state "Пополнение через WebMoney" as WebMoney
+state "Пополнение через Yandex.Cash" as Yandex
+fork_state --> Visa
+fork_state --> MasterCard
+fork_state --> Qiwi
+fork_state --> WebMoney
+fork_state --> Yandex
+
+state join_state <<join>>
+Visa --> join_state
+MasterCard --> join_state
+Qiwi --> join_state
+WebMoney --> join_state
+Yandex --> join_state
+
+join_state --> Пополненный_Кошелек
+
+@enduml
+@enduml

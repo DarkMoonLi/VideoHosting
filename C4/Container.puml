@@ -1,0 +1,82 @@
+@startuml Диаграмма контейнеров
+
+' C4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+' Sprites
+!define ICONURL https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v2.4.0
+!includeurl ICONURL/common.puml
+
+title "Video Hosting. Диаграмма контейнеров"
+
+
+' Personas 
+Person(watcher, "Зритель", "Смотрит видео, комментирует, оценивает видео")
+Person(adv, "Рекламодатель", "Создаёт организацию, загружает рекламу")
+Person(admin, "Администраттор", "Проверяет видео на правила сервиса, блокирует пользователей")
+
+
+System_Boundary(storage, "Система хранилищ данных") {
+
+    Container(video, "Хранилище видео", "", "Хранит видео")
+
+    Container(metaData, "Хранилище метаданных", "", "Хранит метаданные")
+
+    Container(cash, "Кэширование метаданных видео, информации о пользователе", "", "Кэширует данные")
+}
+
+System_Boundary(server, "Веб-сервер") {
+
+    Container(webServer, "Сервер обработки входящих запросов", "", "Обрабатывает запросы и перенапралвяет на сервер приложения или сервер кодирования")
+}
+
+System_Boundary(api, "Система серверов API") {
+
+    Container(loadBalancer, "Балансировщик нагрузки", "", "Равномерно распределяет запросы между серверами api")
+
+    Container(api1, "API server", "", "Предоставляет API для работы с данными.")
+
+    Container(api2, "API server", "", "Предоставляет API для работы с данными.")
+
+    Container(api3, "API server", "", "Предоставляет API для работы с данными.")
+}
+
+System_Boundary(code, "Система транскодирования") {
+
+    Container(transCode, "Сервер транскодирования", "", "Преобразует видео в различные форматы и разрешения")
+}
+
+System_Boundary(db, "База данных") {
+
+    ContainerDb(database, "База данных", "", "Хранит данные")
+}
+
+System_Boundary(analSystem, "Система рекомендаций") {
+
+    Container(anal, "Система рекомендаций", "", "Подбирает рекомендации по тегам, лайкам, просмотрам")
+}
+
+watcher --> webServer : "отправляет запрос"
+adv --> webServer : "отправляет запрос"
+admin --> webServer : "отправляет запрос"
+
+webServer --> loadBalancer : "переадресация запроса"
+loadBalancer --> api1 : "HTTP"
+loadBalancer --> api2 : "HTTP"
+loadBalancer --> api3 : "HTTP"
+
+api1 --> storage : "Загрузка данных"
+api2 --> storage : "Загрузка данных"
+api3 --> storage : "Загрузка данных"
+
+api1 --> database : "Чтение/запись данных"
+api2 --> database : "Чтение/запись данных"
+api3 --> database : "Чтение/запись данных"
+
+webServer --> code : "переадресация запроса"
+
+database --> anal : "данные"
+anal --> api1 : "Выдает рекомендации"
+anal --> api2 : "Выдает рекомендации"
+anal --> api3 : "Выдает рекомендации"
+
+@enduml

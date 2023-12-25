@@ -1,0 +1,82 @@
+@startuml
+skinparam ranksep 20
+  node "Сервер" as work_place <<Linux>> {
+    node Kubernetes {
+        node "Kubernetes Master" as master {
+            component WebServer
+            component Sheduler
+        }
+
+        node WorkerNode1 {
+            component Api1
+            component Api2
+        }
+
+        node WorkerNode2 {
+            component Api3
+            component Api4
+            component Api5
+        }
+
+        node WorkerNode3 {
+            component Api6
+        }
+
+        node "Сервер транскодирования" as WorkerNode4 {
+            component Transcoding
+        }
+    }
+  }
+
+  node "Сервер хранилищ данных" as storage <<Linux>> {
+    component VideoStorage
+    component MetadataStorage
+    component CashMetadataStorage
+  }
+
+  node "Система рекомендаций" as recomendation <<Linux>>
+
+  database "База данных" as db
+
+  node "Клиентское устройство" as client_device <<Windows, Linux, Macos>> {
+    card "Веб-браузер" as browser <<Google Chrome, Safari, Opera, Yandex>> {
+      frame "Single Page Application" as SPA
+    }
+  }
+
+  node "Мобильное устройство" as mobile_device <<Android, IOS>> {
+    card "Мобильное приложение" as mobile_app
+  }
+
+  mobile_app --> master
+  SPA --> master
+
+  WebServer --> Api1
+  WebServer --> Api2
+  WebServer --> Api3
+  WebServer --> Api4
+  WebServer --> Api5
+  WebServer --> Api6
+  WebServer --> Transcoding
+
+  Api1 --> db
+  Api2 --> db
+  Api3 --> db
+  Api4 --> db
+  Api5 --> db
+  Api6 --> db
+
+  Api1 --> storage
+  Api2 --> storage
+  Api3 --> storage
+  Api4 --> storage
+  Api5 --> storage
+  Api6 --> storage
+
+  recomendation --> Api1
+  db -right-> recomendation
+
+node github {
+  component "Архитектурный репозиторий"
+}
+@enduml

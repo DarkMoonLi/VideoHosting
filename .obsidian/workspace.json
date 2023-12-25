@@ -1,0 +1,170 @@
+{
+  "main": {
+    "id": "591696a5e811c28d",
+    "type": "split",
+    "children": [
+      {
+        "id": "7395f1407a85ebed",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "18afdcb33660b78f",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "20c467914d62c706",
+    "type": "split",
+    "children": [
+      {
+        "id": "c02c03253083131e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bed11d9e8a953987",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "0cd65738984ed42a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "ec1cc20d361263d4",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "0cd57992b4d76093",
+    "type": "split",
+    "children": [
+      {
+        "id": "bb33a27675b89bc5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "68c2576c44440ad0",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "ADR/Выбор комбинации непрерывной интеграции.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "8d71b5c7819874b7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "ADR/Выбор комбинации непрерывной интеграции.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "6fd8ea993047626c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "c896988056b9dee1",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "ADR/Выбор комбинации непрерывной интеграции.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "bed11d9e8a953987",
+  "lastOpenFiles": [
+    "Deployment/Maintenance.puml",
+    "Deployment",
+    "C4/Deployment",
+    "C4/Components.puml",
+    "C4/Container.puml",
+    "C4/Context.puml",
+    "C4/Component.puml",
+    "C4/Component.punl",
+    "ADR/Выбор способа развертывания микросервисов.md",
+    "ADR/Выбор архитектурной формы системы.md",
+    "ADR/Выбор комбинации непрерывной интеграции.md",
+    "ADR/Выбор системы хранения данных.md",
+    "Архитектурные факторы/Принципы.md",
+    "ADR/Выбор технологии программирования мобильной части.md",
+    "ADR/Выбор технологии программирования клиентского приложения.md",
+    "ADR/Выбор технологии автоматизированного тестирования.md",
+    "ADR/Выбор технологии программирования серверной части.md",
+    "Архитектурные факторы/Ограничения.md",
+    "Архитектурные факторы/Нефункциональные требования.md",
+    "C4",
+    "ADR",
+    "Архитектурные факторы"
+  ]
+}

@@ -1,0 +1,25 @@
+@startuml
+    autonumber
+
+    actor Client
+    
+    participant UI
+    participant Server
+    participant Db
+
+    Client -> UI: Создает заявку
+    UI -> Server: Передача данных заявки
+    Server -> Server: Проверка геолокации
+    Server -> Server: Проверка нарушения авторских прав
+    Server -> Server: Проверка на мошенничество
+    Server -> Server: Проверка на излишнюю наготу
+    Server -> Server: Проверка на травмоопасный контент
+    Server -> Server: Проверка на дискриминацию
+    Server -> Server: Проверка на жалобы от других пользователей
+    Server -> Db: Запрос о записи данных заявки
+    Db -> Db: подготовка ответа
+    Server <-- Db: Отправка ответа
+    UI <-- Server: Возврат сообщения об успехе
+    Client <-- UI: Ответ от UI
+
+@enduml

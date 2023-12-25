@@ -1,0 +1,105 @@
+@startuml
+
+package Development {
+    component "Разработчик" as developer
+    rectangle "Добавление в область добавленных файлов" as add
+    rectangle "Коммит" as commit
+    rectangle "Push" as push
+
+    developer --> add : "git add"
+    add --> commit: "git commit"
+    commit --> push: "git push"
+    push --> Jenkins: "Start pipeline"
+}
+
+package Staging {
+    node "Kubernetes" as Kubernetes {
+        node "Kubernetes Master" as master {
+            component WebServer
+            component Sheduler
+        }
+
+        node WorkerNode1 {
+            component Api1
+            component Api2
+        }
+
+        node WorkerNode2 {
+            component Api3
+            component Api4
+            component Api5
+        }
+
+        node WorkerNode3 {
+            component Api6
+        }
+
+        node "Сервер транскодирования" as WorkerNode4 {
+            component Transcoding
+        }
+    }
+}
+
+WebServer --> Api1
+WebServer --> Api2
+WebServer --> Api3
+WebServer --> Api4
+WebServer --> Api5
+WebServer --> Api6
+WebServer --> Transcoding
+
+package Production {
+    node "Kubernetes" as KubernetesProd {
+        node "Kubernetes Master" as masterProd {
+            component WebServerProd
+            component ShedulerProd
+        }
+
+        node WorkerNodeProd1 {
+            component ApiProd1
+            component ApiProd2
+        }
+
+        node WorkerNodeProd2 {
+            component ApiProd3
+            component ApiProd4
+            component ApiProd5
+        }
+
+        node WorkerNodeProd3 {
+            component ApiProd6
+        }
+
+        node "Сервер транскодирования" as WorkerNodeProd4 {
+            component TranscodingProd
+        }
+    }
+}
+
+WebServerProd --> ApiProd1
+WebServerProd --> ApiProd2
+WebServerProd --> ApiProd3
+WebServerProd --> ApiProd4
+WebServerProd --> ApiProd5
+WebServerProd --> ApiProd6
+WebServerProd --> TranscodingProd
+
+package Jenkins {
+    rectangle "checkout" as checkout
+    rectangle "compile" as compile
+    rectangle "unit test" as unit
+    rectangle "integration test" as integration
+    rectangle "build artifact" as build
+    rectangle "publish artifact" as publish
+}
+
+checkout --> compile
+compile --> unit
+unit --> integration
+integration --> build
+build --> publish
+
+publish --> Staging
+Staging --> Production: "После тестов на staging"
+
+@enduml

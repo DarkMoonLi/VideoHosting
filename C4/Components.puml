@@ -1,0 +1,55 @@
+@startuml Компоненты
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Component diagram for Video Hosting
+
+Container(webServer, "Сервер обработки входящих запросов", "", "Обрабатывает запросы и перенаправляет на сервер приложения или сервер кодирования")
+ContainerDb(db, "База данных", "", "Хранит информацию")
+ContainerDb(videoDB, "Хранилище данных", "", "Хранит видео")
+
+System_Boundary(app, "Core Application") {
+    Container(authAPI, "Контроллер входа", "Веб-апи" , "Позволяет регистрироваться и авторизоваться")
+    Container(videoAPI, "Контроллер видео", "Веб-апи" , "Позволяет регистрироваться и авторизоваться")
+    Container(accAPI, "Контроллер аккаунта", "Веб-апи" , "Позволяет регистрироваться и авторизоваться")
+    Container(advAPI, "Контроллер рекламы", "Веб-апи" , "Позволяет регистрироваться и авторизоваться")
+    Container(channelAPI, "Контроллер канала", "Веб-апи" , "Позволяет регистрироваться и авторизоваться")
+    Container(commentAPI, "Контроллер комментариев", "Веб-апи" , "Позволяет регистрироваться и авторизоваться")
+    Container(donutAPI, "Контроллер донатов", "Веб-апи" , "Позволяет регистрироваться и авторизоваться")
+
+    Container(authRepo, "Контроллер входа", "Веб-апи" , "Позволяет регистрироваться и авторизоваться")
+    Container(videoRepo, "Контроллер видео", "Веб-апи" , "Позволяет регистрироваться и авторизоваться")
+    Container(accRepo, "Контроллер аккаунта", "Веб-апи" , "Позволяет регистрироваться и авторизоваться")
+    Container(advRepo, "Контроллер рекламы", "Веб-апи" , "Позволяет регистрироваться и авторизоваться")
+    Container(channelRepo, "Контроллер канала", "Веб-апи" , "Позволяет регистрироваться и авторизоваться")
+    Container(commentRepo, "Контроллер комментариев", "Веб-апи" , "Позволяет регистрироваться и авторизоваться")
+    Container(donutRepo, "Контроллер донатов", "Веб-апи" , "Позволяет регистрироваться и авторизоваться")
+}
+
+Rel(webServer, authAPI, "HTTPS")
+Rel(webServer, videoAPI, "HTTPS")
+Rel(webServer, accAPI, "HTTPS")
+Rel(webServer, advAPI, "HTTPS")
+Rel(webServer, channelAPI, "HTTPS")
+Rel(webServer, commentAPI, "HTTPS")
+Rel(webServer, donutAPI, "HTTPS")
+
+Rel(authAPI, authRepo, "Данные")
+Rel(videoAPI, videoRepo, "Данные")
+Rel(accAPI, accRepo, "Данные")
+Rel(advAPI, advRepo, "Данные")
+Rel(channelAPI, channelRepo, "Данные")
+Rel(commentAPI, commentRepo, "Данные")
+Rel(donutAPI, donutRepo, "Данные")
+
+Rel(authRepo, db, "Данные")
+Rel(videoRepo, db, "Данные")
+Rel(accRepo, db, "Данные")
+Rel(advRepo, db, "Данные")
+Rel(channelRepo, db, "Данные")
+Rel(commentRepo, db, "Данные")
+Rel(donutRepo, db, "Данные")
+
+Rel(videoRepo, videoDB, "Видео")
+Rel(advRepo, videoDB, "Видео")
+
+@enduml
